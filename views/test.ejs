@@ -4,7 +4,8 @@
 var fix=0;
 $(document).ready(function functionName() {
 setInterval(function(){
-$.getJSON("/te", function(a) {
+  var url="/te/"+$('.room').val();
+$.getJSON(url, function(a) {
 var res = Object.keys(a).map(function(k) {
     // generate the array element
     return [+k, a[k]];
@@ -17,6 +18,9 @@ $(".dis").html("");
 console.log(res[i][1].name);
 $('.dis').append("<p ><strong>"+res[i][1].name+": </strong> "+res[i][1].msg+"</p>");
 }
+
+$('.dis').animate({
+ scrollTop: $('.dis').get(0).scrollHeight}, 500);
 }
 fix=res.length;
 
@@ -57,6 +61,7 @@ margin: 0 0;
 p{ box-shadow: inset 5px 5px 5px rgba(0,0,0,0.4);
 margin-top: 10px;
 padding-top: 5px;
+padding-left: 5px;
 padding-bottom: 10px;
 width: 80%;
 margin-left: 10%;
@@ -66,7 +71,7 @@ margin-bottom: 0px;
 body{
   padding-left: 5%;
   padding-right: 5%;
-  background-color: skyblue;
+  background-color: steelblue;
 }
   .dis{
    box-shadow: inset 5px 5px 5px rgba(0,0,0,0.4);
@@ -78,8 +83,17 @@ body{
     overflow-y: scroll;
 
   }
-  .send{bottom: 0;}
-  input{
+  .send{bottom: 0;
+  border-radius: 30px;
+background-color: rgba(0,0,0,0.7);
+color: white;
+margin-left: 35%;
+width:80px;
+height:40px;}
+  input{padding-left: 25px;
+    text-align: justify;
+    font-weight: bolder;
+    font-size: 15px;
 border-radius: 30px;
 background-color: rgba(0, 0, 0, 0.5);
 margin-bottom: 5px;
@@ -98,7 +112,7 @@ height: 40px;
  <input type="text" class="name" placeholder="enter your name" ><br>
  <input type="text" class="msg" placeholder="enter your message"><br>
  <input type="text" class="room" placeholder="enter chat room name"><br>
- <button type="button" class="send">send message</button>
+ <button type="button" class="send"><strong>Send</strong></button>
 
 
 </div>
