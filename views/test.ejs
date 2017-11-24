@@ -1,9 +1,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script>
+var x=0;
 var fix=0;
 $(document).ready(function functionName() {
 setInterval(function(){
+if(x<120){
   var url="/te/"+$('.room').val();
 $.getJSON(url, function(a) {
 var res = Object.keys(a).map(function(k) {
@@ -23,10 +25,11 @@ $('.dis').animate({
  scrollTop: $('.dis').get(0).scrollHeight}, 500);
 }
 fix=res.length;
+x++;
+});}
+else{x=x-20;}
 
-});
-
-}, 100);
+}, 1000);
 
 $(".send").click(function send() {
   $.ajax({
