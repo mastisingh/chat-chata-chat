@@ -1,0 +1,104 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script>
+var fix=0;
+$(document).ready(function functionName() {
+setInterval(function(){
+$.getJSON("/te", function(a) {
+var res = Object.keys(a).map(function(k) {
+    // generate the array element
+    return [+k, a[k]];
+  });
+
+if(fix!=res.length){
+console.clear();
+$(".dis").html("");
+  for(var i=0;i<res.length;i++){
+console.log(res[i][1].name);
+$('.dis').append("<p ><strong>"+res[i][1].name+": </strong> "+res[i][1].msg+"</p>");
+}
+}
+fix=res.length;
+
+});
+
+}, 100);
+
+$(".send").click(function send() {
+  $.ajax({
+             type: 'post',
+             url: '/dr',
+             data: JSON.stringify({name:$(".name").val(),
+             msg:$(".msg").val(),
+             room:$(".room").val()
+           }),
+             contentType: "application/json; charset=utf-8",
+             traditional: true,
+             success: function (data) {
+                 var b=0;
+             }
+         });
+
+$(".room").hide();
+$(".msg").val("");
+$(".name").hide();
+$(".dis").css({display:"block"});
+});
+
+});
+
+</script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
+</script>
+<style media="screen">
+*{padding: 0 0;
+margin: 0 0;
+}
+p{ box-shadow: inset 5px 5px 5px rgba(0,0,0,0.4);
+margin-top: 10px;
+padding-top: 5px;
+padding-bottom: 10px;
+width: 80%;
+margin-left: 10%;
+border-radius: 30px;
+margin-bottom: 0px;
+}
+body{
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: skyblue;
+}
+  .dis{
+   box-shadow: inset 5px 5px 5px rgba(0,0,0,0.4);
+    height:350px;
+    width:100%;
+    background-color: white;
+    margin-top: 30px;
+    display: none;
+    overflow-y: scroll;
+
+  }
+  .send{bottom: 0;}
+  input{
+border-radius: 30px;
+background-color: rgba(0, 0, 0, 0.5);
+margin-bottom: 5px;
+margin-left:10%;
+width:260px;
+height: 40px;
+
+
+  }
+</style>
+<div class="box">
+<div class="dis">
+
+</div><br>
+
+ <input type="text" class="name" placeholder="enter your name" ><br>
+ <input type="text" class="msg" placeholder="enter your message"><br>
+ <input type="text" class="room" placeholder="enter chat room name"><br>
+ <button type="button" class="send">send message</button>
+
+
+</div>
