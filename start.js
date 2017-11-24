@@ -1,15 +1,6 @@
-var fs = require('fs');
-
-var path =require('path');
 var express= require('express');
 var bodyParser = require('body-parser');
-var dir = require('node-dir');
-var walk    = require('walk');
 var mongoose = require('mongoose');
-
-//var upload = require('express-fileupload');
-var files   = [];
-var im =[];
 var server=express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -30,8 +21,8 @@ server.set('view engine','ejs');
 //server.use(upload());
 server.use(bodyParser.json());
 
-server.get('/te',function(req,res){
-var di=Chat.find({},function(err,data){
+server.get('/te/:room',function(req,res){
+var di=Chat.find({'room':req.params.room},function(err,data){
 if(err) console.log(err);;
 console.log(data);
 res.setHeader('Content-Type', 'application/json');
