@@ -41,7 +41,7 @@ server.post('/dr',urlencodedParser,function(req,res){
     if(err) console.log(err);
     console.log('done');});
 
-res.send(dat);
+
 console.log(dat.name);
 });
 
