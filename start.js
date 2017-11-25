@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var server=express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
+server.use('/',express.static(__dirname + '/assets'));
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://annobot:badalhr@ds119736.mlab.com:19736/chat',{useMongoClient: true});
