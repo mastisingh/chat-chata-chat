@@ -22,13 +22,13 @@ $('.dis').append("<p ><strong>"+res[i][1].name+": </strong> "+res[i][1].msg+"</p
 }
 
 $('.dis').animate({
- scrollTop: $('.dis').get(0).scrollHeight}, 100);
+ scrollTop: $('.dis').get(0).scrollHeight}, 1);
 }
 fix=res.length;
 
 });
 
-}, 100);
+}, 1);
 
 $(".send").click(function send() {
   $.ajax({
