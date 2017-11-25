@@ -152,6 +152,12 @@ background-color: rgba(0,0,0,0.2);
 </div><br>
 
  <input type="text" class="name" placeholder="enter your name" ><br>
- <input type="text" class="msg" placeholder="enter your message"><br>
+ <input type="text" class="msg" onkeyup ="clean('msg')" onkeydown="clean('msg')" placeholder="enter your message"><br>
  <input type="text" class="room" placeholder="enter chat room name"><br>
  <button type="button" class="send"><strong>Send</strong></button>
+ <script type="text/javascript">
+        function clean(e) {
+            var textfield = document.getElementById(e);
+            var regex = /[^a-z 0-9?!.,@()]/gi;
+            textfield.value = textfield.value.replace(regex,"")
+        }
