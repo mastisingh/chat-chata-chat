@@ -7,7 +7,7 @@ $(document).ready(function functionName() {
 setInterval(function(){
   console.log(x);
   if(x<600){
-    x=x+10;
+    x=x+1;
   var url="/te/"+$('.room').val();
 $.getJSON(url, function(a) {
 var res = Object.keys(a).map(function(k) {
@@ -31,7 +31,7 @@ fix=res.length;
 });}
 else{
 if(x==602){x=0;}
-  x=x-1;}
+  x=x-0.1;}
 
 }, 100);
 
