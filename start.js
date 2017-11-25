@@ -23,7 +23,8 @@ server.use(bodyParser.json());
 
 server.get('/te/:room',function(req,res){
 var di=Chat.find({'room':req.params.room},function(err,data){
-if(err) console.log(err);;
+if(err) console.log(err);
+data.sort( {"_id.$old":1} );
 console.log(data);
 res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(data));
@@ -41,7 +42,7 @@ server.post('/dr',urlencodedParser,function(req,res){
     if(err) console.log(err);
     console.log('done');});
 
-
+res.send(dat);
 console.log(dat.name);
 });
 
