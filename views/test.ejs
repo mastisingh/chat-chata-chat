@@ -2,10 +2,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script>
 var fix=0;
+var x=0;
 $(document).ready(function functionName() {
 setInterval(function(){
-  
-   
+  console.log(x);
+  if(x<600){
+    x=x+10;
   var url="/te/"+$('.room').val();
 $.getJSON(url, function(a) {
 var res = Object.keys(a).map(function(k) {
@@ -22,13 +24,16 @@ $('.dis').append("<p ><strong>"+res[i][1].name+": </strong> "+res[i][1].msg+"</p
 }
 
 $('.dis').animate({
- scrollTop: $('.dis').get(0).scrollHeight}, 1);
+ scrollTop: $('.dis').get(0).scrollHeight}, 100);
 }
 fix=res.length;
 
-});
+});}
+else{
+if(x==602){x=0;}
+  x=x-1;}
 
-}, 1);
+}, 1000);
 
 $(".send").click(function send() {
   $.ajax({
